@@ -10,4 +10,5 @@
 
 ## Current Progress
 
-- `day01`: basic C output and variable practice
+- `day01`: basic C output with `Hello, world!`
+- `day02`: C data types (`int`, `float`, `char`) and basic input with `scanf`

@@ -1,29 +1,55 @@
 {
+    "version": "2.0.0",
     "tasks": [
         {
-            "type": "cppbuild",
-            "label": "C/C++: clang 활성 파일 빌드",
-            "command": "/usr/bin/clang",
+            "label": "Build C (MSVC)",
+            "type": "shell",
+            "command": "${workspaceFolder}\\.vscode\\build-msvc.cmd",
             "args": [
-                "-fcolor-diagnostics",
-                "-fansi-escape-codes",
-                "-g",
+                "c",
                 "${file}",
-                "-o",
-                "${workspaceFolder}/build/${fileBasenameNoExtension}"
+                "${workspaceFolder}\\build\\${fileBasenameNoExtension}.exe"
             ],
             "options": {
-                "cwd": "${workspaceFolder}"
+                "cwd": "${workspaceFolder}",
+                "shell": {
+                    "executable": "cmd.exe",
+                    "args": [
+                        "/d",
+                        "/c"
+                    ]
+                }
             },
             "problemMatcher": [
-                "$gcc"
+                "$msCompile"
             ],
-            "group": {
-                "kind": "build",
-                "isDefault": true
+            "group": "build",
+            "detail": "Compile the active .c file with MSVC after loading the Visual Studio developer environment."
+        },
+        {
+            "label": "Build C++ (MSVC)",
+            "type": "shell",
+            "command": "${workspaceFolder}\\.vscode\\build-msvc.cmd",
+            "args": [
+                "cpp",
+                "${file}",
+                "${workspaceFolder}\\build\\${fileBasenameNoExtension}.exe"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "shell": {
+                    "executable": "cmd.exe",
+                    "args": [
+                        "/d",
+                        "/c"
+                    ]
+                }
             },
-            "detail": "디버거에서 생성된 작업입니다."
+            "problemMatcher": [
+                "$msCompile"
+            ],
+            "group": "build",
+            "detail": "Compile the active .cpp file with MSVC after loading the Visual Studio developer environment."
         }
-    ],
-    "version": "2.0.0"
+    ]
 }
