@@ -2,54 +2,84 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Build C (MSVC)",
+            "label": "Build C",
             "type": "shell",
-            "command": "${workspaceFolder}\\.vscode\\build-msvc.cmd",
+            "command": "bash",
             "args": [
+                ".vscode/build-clang.sh",
                 "c",
                 "${file}",
-                "${workspaceFolder}\\build\\${fileBasenameNoExtension}.exe"
+                "${workspaceFolder}/build/${relativeFileDirname}/${fileBasenameNoExtension}"
             ],
             "options": {
-                "cwd": "${workspaceFolder}",
-                "shell": {
-                    "executable": "cmd.exe",
-                    "args": [
-                        "/d",
-                        "/c"
-                    ]
-                }
+                "cwd": "${workspaceFolder}"
             },
             "problemMatcher": [
-                "$msCompile"
+                "$gcc"
             ],
             "group": "build",
-            "detail": "Compile the active .c file with MSVC after loading the Visual Studio developer environment."
+            "detail": "Compile the active .c file. Uses MSVC on Windows and clang on macOS/Linux.",
+            "windows": {
+                "command": "${workspaceFolder}\\.vscode\\build-msvc.cmd",
+                "args": [
+                    "c",
+                    "${file}",
+                    "${workspaceFolder}\\build\\${relativeFileDirname}\\${fileBasenameNoExtension}.exe"
+                ],
+                "options": {
+                    "cwd": "${workspaceFolder}",
+                    "shell": {
+                        "executable": "cmd.exe",
+                        "args": [
+                            "/d",
+                            "/c"
+                        ]
+                    }
+                },
+                "problemMatcher": [
+                    "$msCompile"
+                ]
+            }
         },
         {
-            "label": "Build C++ (MSVC)",
+            "label": "Build C++",
             "type": "shell",
-            "command": "${workspaceFolder}\\.vscode\\build-msvc.cmd",
+            "command": "bash",
             "args": [
+                ".vscode/build-clang.sh",
                 "cpp",
                 "${file}",
-                "${workspaceFolder}\\build\\${fileBasenameNoExtension}.exe"
+                "${workspaceFolder}/build/${relativeFileDirname}/${fileBasenameNoExtension}"
             ],
             "options": {
-                "cwd": "${workspaceFolder}",
-                "shell": {
-                    "executable": "cmd.exe",
-                    "args": [
-                        "/d",
-                        "/c"
-                    ]
-                }
+                "cwd": "${workspaceFolder}"
             },
             "problemMatcher": [
-                "$msCompile"
+                "$gcc"
             ],
             "group": "build",
-            "detail": "Compile the active .cpp file with MSVC after loading the Visual Studio developer environment."
+            "detail": "Compile the active .cpp file. Uses MSVC on Windows and clang++ on macOS/Linux.",
+            "windows": {
+                "command": "${workspaceFolder}\\.vscode\\build-msvc.cmd",
+                "args": [
+                    "cpp",
+                    "${file}",
+                    "${workspaceFolder}\\build\\${relativeFileDirname}\\${fileBasenameNoExtension}.exe"
+                ],
+                "options": {
+                    "cwd": "${workspaceFolder}",
+                    "shell": {
+                        "executable": "cmd.exe",
+                        "args": [
+                            "/d",
+                            "/c"
+                        ]
+                    }
+                },
+                "problemMatcher": [
+                    "$msCompile"
+                ]
+            }
         }
     ]
 }

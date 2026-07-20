@@ -11,6 +11,9 @@ set "SRC=%~2"
 set "OUT=%~3"
 set "VSDEVCMD=C:\Program Files\Microsoft Visual Studio\18\Community\Common7\Tools\VsDevCmd.bat"
 
+for %%I in ("%OUT%") do set "OUTDIR=%%~dpI"
+if not exist "%OUTDIR%" mkdir "%OUTDIR%"
+
 call "%VSDEVCMD%" -arch=x64
 if errorlevel 1 exit /b %errorlevel%
 
